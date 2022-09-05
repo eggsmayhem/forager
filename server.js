@@ -1,5 +1,7 @@
 // WebExtensions that wish to use the Geolocation object must add the "geolocation" permission to their manifest. 
 
+//server tut test
+
 const express = require('express')
 const app = express()
 const connectDB = require('./config/database')
