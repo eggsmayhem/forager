@@ -3,6 +3,11 @@
 
 
 #map { 
-    height: 180px; 
+    height: 500px; 
 
+}
+/* this should be styling the popups (run an inspect element to verify this classname), but isn't */
+.leaflet-popup-content-wrapper {
+    background-color: purple;
+    color: white;
 }
