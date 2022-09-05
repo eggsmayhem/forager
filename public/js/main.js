@@ -1,5 +1,7 @@
 // document.querySelector('#find-me').addEventListener('click', geoFindMe);
 //if that asks users permission, determines if they are geolocator compatible, and returns coords into DOM 
+document.getElementById('weathermap').innerHTML = "<div id='map' style='width: 100%; height: 100%;'></div>";
+
 (() => {
   const message = document.querySelector('#message');
 
@@ -29,17 +31,21 @@
 
       message.classList.add('success');
       // remove a map if there already is one so a new map can be intialized
-      const voidCheck = L.DomUtil.get('map')
-      if (voidCheck != null) {
-        voidCheck._leafleat_id = null
-      }
-     
-      const map = L.map('map').setView([position.coords.latitude, position.coords.longitude], 13)
+      
+    
+      const map = L.map('map').setView([latitude, longitude], 13)
+
+      message.innerText = `your coordinates are: ${latitude} lat ${longitude} lon`
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map)
 
-      message.textContent = `Your location: (${latitude},${longitude})`;
+      //add marker with second set of coordinates, hardcoded for now
+      L.marker([latitude, longitude]).addTo(map)
+        .bindPopup('Name of Plant')
+        .openPopup()
+
+     
   }
 
   // handle error case

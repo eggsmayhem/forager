@@ -1,11 +1,8 @@
 
 /* map needs a defined height for leaflet to work */
 
-/* .main-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-} */
+
 #map { 
     height: 180px; 
+
 }
