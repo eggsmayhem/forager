@@ -1,3 +1,13 @@
+
+//NOTE: Refactor this to be a primary function with callbacks, instead of all within one function 
+
+//What this currently does:
+// gets coordinates one time, loads a map with Two markers.
+
+//What I want it to do:
+//call to plant API, get plant ID. After this is verified, give option to post location that will create a marker with the plants name, perhaps with its image 
+
+
 // document.querySelector('#find-me').addEventListener('click', geoFindMe);
 //if that asks users permission, determines if they are geolocator compatible, and returns coords into DOM 
 
@@ -21,9 +31,13 @@
 
 //eventually, if you could get a time-series of weather, you could find a time when a certain area is supposed to be clear and plan your events around the weather, and you could check in later to see if the area is still supposed to be clear 
 
+//currently returns the first plant, eventually we want to show them images of the suggestions, have them select the correct one, then work with only that data 
+
 document.getElementById('weathermap').innerHTML = "<div id='map' style='width: 100%; height: 100%;'></div>";
+//why is this in an IIFE? 
 
 (() => {
+  //message enables us to tell user if their browser doesn't support geolocation
   const message = document.querySelector('#message');
 
   // const map = null
@@ -56,6 +70,18 @@ document.getElementById('weathermap').innerHTML = "<div id='map' style='width: 1
       const map = L.map('map').setView([latitude, longitude], 13)
 
       message.innerText = `your coordinates are: ${latitude} lat ${longitude} lon`
+
+      //hardcode some plant info for testing
+
+      const plant = {
+        url: "https://plant.id/media/images/fb4120879ae04199821cce79b6fd60c8.jpg",
+        scientificName: "Magnolia virginiana"
+      }
+
+      //loading all related coords, rendering with only the new Plant visible by default
+
+
+      //rendering the map
       //osm layer 
       const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -137,7 +163,7 @@ const mandrakeIcon = L.icon({
     console.log('lat:' + e.latlng.lat, 'lng: ' + e.latlng.lng)
   })
      
-  }
+}
 
   //Layer Controller
 
