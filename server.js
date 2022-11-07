@@ -15,9 +15,12 @@ require('dotenv').config({path: './config/.env'})
 connectDB()
 
 app.set('view engine', 'ejs')
-app.use(express.static('public'))
-app.use(express.urlencoded({ extended: true }))
 
+app.use(express.static('public'))
+// attempt to fix request entity too larger error
+app.use(express.json({limit: '10mb'}))
+app.use(express.urlencoded({ extended: true, limit: '10mb' }))
+// end of fix
 
 // app.use('/userLocation', userLocationRoutes)
 app.use(express.json())
